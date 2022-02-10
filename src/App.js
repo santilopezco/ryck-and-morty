@@ -1,25 +1,92 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import Card from "./Componentes/Card";
+import ContainCard from "./Componentes/ContainCard/ContainCard";
 
-function App() {
+import Header from "./Componentes/Header/Header";
+import Pagination from "./Componentes/Pagination/Pagination";
+
+
+
+
+function App () {
+
+  const url='https://rickandmortyapi.com/api/character'
+
+  const [gif, setGif] = useState([]);
+  const [info, setInfo] = useState({});
+  const [text,setText]=useState('')
+  let searchCharacters=[]
+
+  const handleApi =async(url)=>{
+
+    fetch(url)
+      .then(resp=>resp.json())
+      .then(data=>{
+        setGif(data.results)
+        setInfo(data.info)
+      })
+  }
+
+  useEffect(() => {
+
+    handleApi(url)
+  
+  }, []);
+  
+console.log(gif)
+
+const onPrevius=()=>{
+  handleApi(info.prev)
+}
+
+const onNext =()=>{
+
+  handleApi(info.next)
+}
+ 
+if(gif.length>=1){
+  searchCharacters=gif.filter((character)=>{
+    const characterText =character.name.toLowerCase();
+    const searchText=text.toLowerCase()
+    return characterText.includes(searchText)
+  })
+}
+else{
+  searchCharacters=gif
+}
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    
+      <Header
+        text={text}
+        setText={setText}
+        />
+    
+      <Pagination 
+        prev={info.prev}
+        next={info.next}
+        onPrevius={onPrevius}
+        onNext={onNext}  />
+      <ContainCard>
+   
+        {
+          searchCharacters?.map((item,i)=>(
+            <Card
+              key={i}
+              image={item.image}
+              name={item.name}
+              species={item.species}
+            />
+          ))
+        }
+
+      </ContainCard>
+    </>
+    
+
+  )
 }
 
 export default App;

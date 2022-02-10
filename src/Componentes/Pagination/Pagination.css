@@ -1,0 +1,13 @@
+.cont__butt{
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+.cont__li button{
+    margin: 20px;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-weight:bold;
+    font-size: 20px;
+    border:1px solid #000;
+}

@@ -1,0 +1,24 @@
+.inp__search{
+    height: 40px;
+    width: 80%;
+    margin: auto; 
+}
+
+.contain__serch {
+   display: flex;
+   flex-direction: column;
+   width: 80%;
+}
+.contain__serch h2{
+    display: block;
+    margin: auto;
+    font-weight: bold;
+    font-size: 30px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#69c8ecff
+    
+   
+}
+.contain__serch input{
+    margin-bottom: 50px;
+}

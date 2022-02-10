@@ -1,0 +1,12 @@
+.cont_card{
+    margin: 5px;
+    width: 23%;
+    overflow: visible;
+    border-radius: 13px;
+}
+
+.cont_card h2 {
+    font-size: 1.5rem;
+}
+
+
